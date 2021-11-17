@@ -11,7 +11,7 @@ export class AgregarComponent {
 
   colorQueQuiero : string = 'green';
   texto1         : string = 'Fabio Martin Aoad';
-  color          : string = 'red';
+  color          : string = 'yellow';
 
   miFormulario: FormGroup = this.fb.group({
     nombre: ['', Validators.required ]
@@ -27,11 +27,14 @@ export class AgregarComponent {
 
 
   cambiarNombre(){
-    this.texto1 = 'Optimus Prime';
+   // this.texto1 = 'Optimus Prime';
+    this.texto1 = Math.random().toString();
   }
 
 
   cambiarColor(){
-    this.color = 'yellow';
+   // this.color = 'yellow';
+    const color = "#xxxxxx".replace(/x/g, y=>(Math.random()*16|0).toString(16));
+    this.color = color;
   }
 }
