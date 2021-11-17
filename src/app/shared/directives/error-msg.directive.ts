@@ -3,12 +3,13 @@ import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 @Directive({
   selector: '[error-msg]'
 })
-export class ErrorMsgDirective implements OnInit {
+export class ErrorMsgDirective implements OnInit, OnChanges {
 
 
   htmlElement     : ElementRef<HTMLElement>;
   @Input() color  : string = 'red';
   @Input() mensaje: string = 'Este campo es necesario';
+  @Input() otroMensaje: string = 'complete este campo';
 
 
   constructor( private  elem: ElementRef<HTMLElement>) {
@@ -18,10 +19,25 @@ export class ErrorMsgDirective implements OnInit {
     this.htmlElement = elem;
   }
 
+  ngOnChanges(changes: SimpleChanges): void{
+    //console.log(changes);
+    if ( changes.otroMensaje){
+      const otroMensaje = changes.otroMensaje.currentValue;
+      //console.log(otroMensaje);
+      this.htmlElement.nativeElement.innerText = otroMensaje;
+    }
+    if ( changes.color ){
+      const color = changes.color.currentValue;
+      this.htmlElement.nativeElement.style.color = color;
+    }
+    console.log(changes);
+  }
+
   ngOnInit(): void {
   //  console.log('NgOnInit  directive');
     this.setColor();
     this.setMensaje();
+    this.setOtroMensaje();
     this.setEstilo();
   }
 
@@ -33,6 +49,10 @@ export class ErrorMsgDirective implements OnInit {
 
   setMensaje(): void {
     this.htmlElement.nativeElement.innerText = this.mensaje;
+  }
+
+  setOtroMensaje(): void {
+    this.htmlElement.nativeElement.innerText = this.otroMensaje;
   }
 
   setEstilo(): void {
