@@ -6,7 +6,12 @@ import { Directive, ElementRef, Input, OnChanges, OnInit, SimpleChanges } from '
 export class ErrorMsgDirective implements OnInit {
 
 
+  constructor() {
+  console.log('contructor directive');
+  }
+
   ngOnInit(): void {
+    console.log('NgOnInit  directive');
   }
 
 

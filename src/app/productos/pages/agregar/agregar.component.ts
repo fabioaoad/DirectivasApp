@@ -9,8 +9,15 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 })
 export class AgregarComponent {
 
+  miFormulario: FormGroup = this.fb.group({
+    nombre: ['', Validators.required ]
+  });
 
-  constructor(  ) { }
+  constructor( private fb: FormBuilder) { }
 
+
+  tieneError( campo: string ): boolean {
+    return this.miFormulario.get(campo)?.invalid || false;
+  }
 
 }
