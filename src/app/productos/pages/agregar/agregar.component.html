@@ -13,13 +13,26 @@
                <input class="form-control" formControlName="nombre">
             </div>
 
+
+
+        <!-- Directiva con color y mensaje diferente  - class = "form-text" añadido desde directiva error-msg.directive.ts-->
             <div class="col-auto">
-                <span class="form-text"
-                      error-msg color="blue"
+                <span error-msg color="blue" mensaje="Debe ingresar este campo"
                       *ngIf="tieneError('nombre')">
-                    Este campo es requerido
                 </span>
             </div>
+
+
+
+
+        <!-- Directiva sola - class = "form-text" añadido desde directiva error-msg.directive.ts-->
+        <div class="col-auto">
+                <span error-msg
+                      *ngIf="tieneError('nombre')">
+                </span>
+        </div>
+
+
 
     </div>
 
